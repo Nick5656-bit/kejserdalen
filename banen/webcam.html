@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webcam | FAM Kejserdalen</title>
+    <meta name="description" content="Se live webcam fra Kejserdalen Motocross Bane.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Rajdhani:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+    
+    <!-- JS -->
+    <script src="../js/subpage.js" defer></script>
+</head>
+<body>
+
+    <!-- ======= NAVBAR ======= -->
+    <header class="navbar navbar--solid" id="navbar">
+        <div class="navbar__container">
+            <a href="../index.html" class="navbar__logo">
+                <img src="../assets/images/logo.png" alt="FAM Kejserdalen Logo" class="navbar__logo-img">
+            </a>
+            
+            <nav class="navbar__nav" id="navMenu">
+                <a href="../index.html" class="navbar__link">Hjem</a>
+                <a href="https://kejserdalen.nemtilmeld.dk/?fbclid=IwY2xjawFP-apleHRuA2FlbQIxMAABHRqCk-J15rfGJ6o_tkZ6F2Ca1nFHQtTq5d6O7MbKapPP2cWGJdafz0RNQw_aem_7qx7fho8AO3H0dyfP2xFcg" class="navbar__link" target="_blank" rel="noopener">NemTilmeld</a>
+                
+                <!-- Klubben Dropdown -->
+                <div class="navbar__dropdown">
+                    <button class="navbar__link dropdown__toggle">Klubben <span class="dropdown__icon" style="font-size:0.8em; margin-left:4px;">▼</span></button>
+                    <div class="dropdown__menu">
+                        <a href="../klubben/kalender.html" class="dropdown__link">Aktivitetskalender</a>
+                        <a href="../klubben/bestyrelse.html" class="dropdown__link">Bestyrelse</a>
+                        <a href="../klubben/referater.html" class="dropdown__link">Referater</a>
+                        <a href="../klubben/vedtaegter.html" class="dropdown__link">Vedtægter</a>
+                    </div>
+                </div>
+
+                <!-- Banen Dropdown -->
+                <div class="navbar__dropdown">
+                    <button class="navbar__link dropdown__toggle active">Banen <span class="dropdown__icon" style="font-size:0.8em; margin-left:4px;">▼</span></button>
+                    <div class="dropdown__menu">
+                        <a href="../index.html#banen" class="dropdown__link">Om banen</a>
+                        <a href="traeningstider.html" class="dropdown__link">Træningstider</a>
+                        <a href="webcam.html" class="dropdown__link active">Webcam</a>
+                    </div>
+                </div>
+
+                <!-- Kom i gang Dropdown -->
+                <div class="navbar__dropdown">
+                    <button class="navbar__link dropdown__toggle">Kom i gang <span class="dropdown__icon" style="font-size:0.8em; margin-left:4px;">▼</span></button>
+                    <div class="dropdown__menu">
+                        <a href="kom-i-gang.html" class="dropdown__link">Motocross</a>
+                        <a href="bliv-frivillig.html" class="dropdown__link">Bliv frivillig</a>
+                    </div>
+                </div>
+
+                <a href="../index.html#nyheder" class="navbar__link">Nyheder</a>
+                <a href="kontakt.html" class="navbar__link">Kontakt</a>
+            </nav>
+
+            <div class="navbar__actions">
+                <button class="navbar__hamburger" id="hamburger" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ======= PAGE HERO ======= -->
+    <section class="subpage-hero">
+        <div class="container">
+            <h1 class="subpage-hero__title">Webcam</h1>
+            <p class="subpage-hero__subtitle">Følg med live fra tre forskellige vinkler på banen.</p>
+        </div>
+    </section>
+
+    <!-- ======= CONTENT ======= -->
+    <main class="subpage-content">
+
+        <div class="webcam-grid" style="display: grid; gap: 2rem; grid-template-columns: 1fr; max-width: 900px; margin: 0 auto 2rem;">
+            <div class="board-card training-card" style="padding: 1.25rem;">
+                <h3 class="board-card__name" style="margin-bottom: 1rem; text-align: center;">Kamera 1</h3>
+                <img id="webcam1" src="" alt="Webcam 1" style="width: 100%; border-radius: var(--radius-md); background: rgba(0,0,0,0.5); aspect-ratio: 16/9; object-fit: contain;">
+            </div>
+            <div class="board-card training-card" style="padding: 1.25rem;">
+                <h3 class="board-card__name" style="margin-bottom: 1rem; text-align: center;">Kamera 2</h3>
+                <img id="webcam2" src="" alt="Webcam 2" style="width: 100%; border-radius: var(--radius-md); background: rgba(0,0,0,0.5); aspect-ratio: 16/9; object-fit: contain;">
+            </div>
+            <div class="board-card training-card" style="padding: 1.25rem;">
+                <h3 class="board-card__name" style="margin-bottom: 1rem; text-align: center;">Kamera 3</h3>
+                <img id="webcam3" src="" alt="Webcam 3" style="width: 100%; border-radius: var(--radius-md); background: rgba(0,0,0,0.5); aspect-ratio: 16/9; object-fit: contain;">
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const base1 = "https://nicklasbitsch.wixsite.com/mysite-3/_functions/webcam1";
+                const base2 = "https://nicklasbitsch.wixsite.com/mysite-3/_functions/webcam2";
+                const base3 = "https://nicklasbitsch.wixsite.com/mysite-3/_functions/webcam3";
+
+                function refreshWebcams() {
+                    const t = Date.now(); // force fresh image 
+                    document.getElementById("webcam1").src = `${base1}?t=${t}`;
+                    document.getElementById("webcam2").src = `${base2}?t=${t}`;
+                    document.getElementById("webcam3").src = `${base3}?t=${t}`;
+                }
+
+                // Initial fetch
+                refreshWebcams();
+                
+                // Opdater hvert 60. sekund
+                setInterval(refreshWebcams, 60000);
+            });
+        </script>
+
+    </main>
+
+    <!-- ======= FOOTER ======= -->
+    <footer class="footer">
+        <div class="footer__top">
+            <div class="container">
+                <div class="footer__grid">
+                    <div class="footer__brand">
+                        <img src="../assets/images/logo.png" alt="FAM Logo" class="footer__logo">
+                        <p class="footer__brand-name">FAM / FHMCK</p>
+                        <p class="footer__brand-sub">Frederiksborg Amts &<br>Fredensborg Humlebæk<br>Motocross Klub</p>
+                    </div>
+                    
+                    <div class="footer__info">
+                        <h3 class="footer__heading">Kontakt</h3>
+                        <p>Humlebækvej 64B</p>
+                        <p>3480 Fredensborg</p>
+                        <p>Danmark</p>
+                    </div>
+                    
+                    <div class="footer__links">
+                        <h3 class="footer__heading">Genveje</h3>
+                        <a href="../index.html#klubben">Om klubben</a>
+                        <a href="../index.html#banen">Banen</a>
+                        <a href="kom-i-gang.html">Kom i gang</a>
+                        <a href="../index.html#nyheder">Nyheder</a>
+                    </div>
+                    
+                    <div class="footer__social">
+                        <h3 class="footer__heading">Følg os</h3>
+                        <div class="footer__social-links">
+                            <a href="https://www.facebook.com/groups/208129055985299" target="_blank" rel="noopener" class="footer__social-link" aria-label="Facebook">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                                </svg>
+                            </a>
+                            <a href="https://instagram.com" target="_blank" rel="noopener" class="footer__social-link" aria-label="Instagram">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                                </svg>
+                            </a>
+                        </div>
+                        <div class="footer__partners">
+                            <h3 class="footer__heading">En del af</h3>
+                            <p>Danmarks Motor Union</p>
+                            <p>Dansk Idrætsforbund</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <div class="container">
+                <p>&copy; 2026 Frederiksborg Amts Motorklub. Alle rettigheder forbeholdes.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

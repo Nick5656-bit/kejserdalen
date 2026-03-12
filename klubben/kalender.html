@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aktivitetskalender | FAM Kejserdalen</title>
+    <meta name="description" content="Aktivitetskalender for Frederiksborg Amts Motorklub">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Rajdhani:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+    
+    <!-- JS -->
+    <script src="../js/subpage.js" defer></script>
+</head>
+<body>
+
+    <!-- ======= NAVBAR ======= -->
+    <header class="navbar navbar--solid" id="navbar">
+        <div class="navbar__container">
+            <a href="../index.html" class="navbar__logo">
+                <img src="../assets/images/logo.png" alt="FAM Kejserdalen Logo" class="navbar__logo-img">
+            </a>
+            
+            <nav class="navbar__nav" id="navMenu">
+                <a href="../index.html" class="navbar__link">Hjem</a>
+                <a href="https://kejserdalen.nemtilmeld.dk/?fbclid=IwY2xjawFP-apleHRuA2FlbQIxMAABHRqCk-J15rfGJ6o_tkZ6F2Ca1nFHQtTq5d6O7MbKapPP2cWGJdafz0RNQw_aem_7qx7fho8AO3H0dyfP2xFcg" class="navbar__link" target="_blank" rel="noopener">NemTilmeld</a>
+                <div class="navbar__dropdown">
+                    <button class="navbar__link dropdown__toggle active">Klubben <span class="dropdown__icon" style="font-size:0.8em; margin-left:4px;">▼</span></button>
+                    <div class="dropdown__menu">
+                        <a href="kalender.html" class="dropdown__link active">Aktivitetskalender</a>
+                        <a href="bestyrelse.html" class="dropdown__link">Bestyrelse</a>
+                        <a href="referater.html" class="dropdown__link">Referater</a>
+                        <a href="vedtaegter.html" class="dropdown__link">Vedtægter</a>
+                    </div>
+                </div>
+                <!-- Banen Dropdown -->
+                <div class="navbar__dropdown">
+                    <button class="navbar__link dropdown__toggle">Banen <span class="dropdown__icon" style="font-size:0.8em; margin-left:4px;">▼</span></button>
+                    <div class="dropdown__menu">
+                        <a href="../index.html#banen" class="dropdown__link">Om banen</a>
+                        <a href="../banen/traeningstider.html" class="dropdown__link">Træningstider</a>
+                        <a href="../banen/webcam.html" class="dropdown__link">Webcam</a>
+                    </div>
+                </div>
+                <!-- Kom i gang Dropdown -->
+                <div class="navbar__dropdown">
+                    <button class="navbar__link dropdown__toggle">Kom i gang <span class="dropdown__icon" style="font-size:0.8em; margin-left:4px;">▼</span></button>
+                    <div class="dropdown__menu">
+                        <a href="../banen/kom-i-gang.html" class="dropdown__link">Motocross</a>
+                        <a href="../banen/bliv-frivillig.html" class="dropdown__link">Bliv frivillig</a>
+                    </div>
+                </div>
+
+                <a href="../index.html#nyheder" class="navbar__link">Nyheder</a>
+                <a href="../banen/kontakt.html" class="navbar__link">Kontakt</a>
+            </nav>
+
+            <div class="navbar__actions">
+                <button class="navbar__hamburger" id="hamburger" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ======= PAGE HERO ======= -->
+    <section class="subpage-hero">
+        <div class="container">
+            <h1 class="subpage-hero__title">Aktivitetskalender</h1>
+            <p class="subpage-hero__subtitle">Find alle årets løb, arbejdsdage og arrangementer herunder.</p>
+        </div>
+    </section>
+
+    <!-- ======= CONTENT ======= -->
+    <main class="subpage-content">
+        <div class="pdf-container">
+            <!-- Denne iframe får sin src via subpage.js (fra localStorage eller default path) -->
+            <iframe id="pdfKalender" class="pdf-iframe" title="Aktivitetskalender"></iframe>
+        </div>
+    </main>
+
+    <!-- ======= FOOTER ======= -->
+    <footer class="footer">
+        <div class="footer__top">
+            <div class="container">
+                <div class="footer__grid">
+                    <div class="footer__brand">
+                        <img src="../assets/images/logo.png" alt="FAM Logo" class="footer__logo">
+                        <p class="footer__brand-name">FAM / FHMCK</p>
+                        <p class="footer__brand-sub">Frederiksborg Amts &<br>Fredensborg Humlebæk<br>Motocross Klub</p>
+                    </div>
+                    
+                    <div class="footer__info">
+                        <h3 class="footer__heading">Kontakt</h3>
+                        <p>Humlebækvej 64B</p>
+                        <p>3480 Fredensborg</p>
+                        <p>Danmark</p>
+                    </div>
+                    
+                    <div class="footer__links">
+                        <h3 class="footer__heading">Genveje</h3>
+                        <a href="../index.html#klubben">Om klubben</a>
+                        <a href="../index.html#banen">Banen</a>
+                        <a href="../banen/kom-i-gang.html">Kom i gang</a>
+                        <a href="../index.html#nyheder">Nyheder</a>
+                    </div>
+                    
+                    <div class="footer__social">
+                        <h3 class="footer__heading">Følg os</h3>
+                        <div class="footer__social-links">
+                            <a href="https://www.facebook.com/groups/208129055985299" target="_blank" rel="noopener" class="footer__social-link" aria-label="Facebook">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                                </svg>
+                            </a>
+                            <a href="https://instagram.com" target="_blank" rel="noopener" class="footer__social-link" aria-label="Instagram">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                                </svg>
+                            </a>
+                        </div>
+                        <div class="footer__partners">
+                            <h3 class="footer__heading">En del af</h3>
+                            <p>Danmarks Motor Union</p>
+                            <p>Dansk Idrætsforbund</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <div class="container">
+                <p>&copy; 2026 Frederiksborg Amts Motorklub. Alle rettigheder forbeholdes.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
