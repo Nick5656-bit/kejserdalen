@@ -1,16 +1,31 @@
 <!DOCTYPE html>
 <html lang="da">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard | FAM Kejserdalen</title>
     <meta name="robots" content="noindex, nofollow">
-    
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Rajdhani:wght@500;600;700;800&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Rajdhani:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <script>
+        (function () {
+            try {
+                if (localStorage.getItem('fam_theme') === 'light') {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                }
+            } catch (e) {
+                // If storage is unavailable, keep default dark theme.
+            }
+        })();
+    </script>
+
     <style>
         /* ---- Design Tokens (same as main site) ---- */
         :root {
@@ -48,8 +63,42 @@
             --transition-base: 300ms ease;
         }
 
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
+        html[data-theme="light"] {
+            --color-bg: #F3F6FB;
+            --color-bg-elevated: #FFFFFF;
+            --color-bg-card: #FFFFFF;
+            --color-bg-card-hover: #EEF4FF;
+            --color-surface: #ECF2FA;
+            --color-primary-glow: rgba(0, 136, 204, 0.18);
+            --color-text: #1A2533;
+            --color-text-secondary: #4B5D73;
+            --color-text-muted: #71839A;
+            --color-white: #FFFFFF;
+        }
+
+        html[data-theme="light"] .topbar__title,
+        html[data-theme="light"] .login-card__title,
+        html[data-theme="light"] .section-title,
+        html[data-theme="light"] .news-item__title {
+            color: var(--color-text);
+        }
+
+        html[data-theme="light"] .tab-btn:hover {
+            color: var(--color-text);
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: var(--font-body);
             font-size: 16px;
@@ -67,20 +116,23 @@
             min-height: 100vh;
             padding: var(--space-xl);
         }
+
         .login-card {
             background: var(--color-bg-card);
-            border: 1px solid rgba(255,255,255,0.08);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: var(--radius-lg);
             padding: var(--space-3xl);
             max-width: 420px;
             width: 100%;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
         }
+
         .login-card__logo {
             display: block;
             height: 60px;
             margin: 0 auto var(--space-lg);
         }
+
         .login-card__title {
             font-family: var(--font-heading);
             font-size: 1.8rem;
@@ -91,6 +143,7 @@
             letter-spacing: 2px;
             margin-bottom: var(--space-xs);
         }
+
         .login-card__sub {
             text-align: center;
             color: var(--color-text-secondary);
@@ -98,14 +151,36 @@
             font-size: 0.9rem;
         }
 
+        .login-card__back-link {
+            display: inline-block;
+            margin-top: var(--space-lg);
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color var(--transition-fast);
+        }
+
+        .login-card__back-link:hover {
+            color: var(--color-primary-light);
+        }
+
         /* ---- DASHBOARD ---- */
-        .dashboard { display: none; min-height: 100vh; }
-        .dashboard.active { display: block; }
-        .login-screen.hidden { display: none; }
+        .dashboard {
+            display: none;
+            min-height: 100vh;
+        }
+
+        .dashboard.active {
+            display: block;
+        }
+
+        .login-screen.hidden {
+            display: none;
+        }
 
         .topbar {
             background: var(--color-bg-elevated);
-            border-bottom: 1px solid rgba(0,136,204,0.15);
+            border-bottom: 1px solid rgba(0, 136, 204, 0.15);
             padding: var(--space-md) var(--space-xl);
             display: flex;
             align-items: center;
@@ -114,8 +189,17 @@
             top: 0;
             z-index: 100;
         }
-        .topbar__left { display: flex; align-items: center; gap: var(--space-md); }
-        .topbar__logo { height: 40px; }
+
+        .topbar__left {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+
+        .topbar__logo {
+            height: 40px;
+        }
+
         .topbar__title {
             font-family: var(--font-heading);
             font-weight: 700;
@@ -124,8 +208,9 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
+
         .topbar__badge {
-            background: rgba(0,136,204,0.2);
+            background: rgba(0, 136, 204, 0.2);
             color: var(--color-primary-light);
             padding: 2px 10px;
             border-radius: var(--radius-full);
@@ -141,10 +226,11 @@
             gap: var(--space-xs);
             padding: var(--space-md) var(--space-xl);
             background: var(--color-bg-elevated);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             position: relative;
             z-index: 50;
         }
+
         .tab-btn {
             font-family: var(--font-heading);
             font-size: 0.95rem;
@@ -161,18 +247,41 @@
             position: relative;
             z-index: 51;
         }
-        .tab-btn:hover { color: var(--color-white); background: rgba(255,255,255,0.05); }
+
+        .tab-btn:hover {
+            color: var(--color-white);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
         .tab-btn.active {
             color: var(--color-white);
             background: var(--color-primary);
             box-shadow: 0 2px 10px var(--color-primary-glow);
         }
 
-        .tab-panel { display: none; padding: var(--space-2xl) var(--space-xl); max-width: 1100px; margin: 0 auto; }
-        .tab-panel.active { display: block; }
+        .tab-panel {
+            display: none;
+            padding: var(--space-2xl) var(--space-xl);
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        .news-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-2xl);
+            align-items: start;
+        }
 
         /* ---- FORM ---- */
-        .form-group { margin-bottom: var(--space-lg); }
+        .form-group {
+            margin-bottom: var(--space-lg);
+        }
+
         .form-label {
             display: block;
             margin-bottom: var(--space-xs);
@@ -180,11 +289,13 @@
             font-size: 0.85rem;
             font-weight: 500;
         }
-        .form-input, .form-textarea {
+
+        .form-input,
+        .form-textarea {
             width: 100%;
             padding: 0.75rem 1rem;
             background: var(--color-bg);
-            border: 1px solid rgba(255,255,255,0.12);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             border-radius: var(--radius-md);
             color: var(--color-text);
             font-family: var(--font-body);
@@ -192,11 +303,17 @@
             outline: none;
             transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
         }
-        .form-input:focus, .form-textarea:focus {
+
+        .form-input:focus,
+        .form-textarea:focus {
             border-color: var(--color-primary-light);
             box-shadow: 0 0 0 3px var(--color-primary-glow);
         }
-        .form-textarea { resize: vertical; min-height: 100px; }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
 
         /* ---- BUTTONS ---- */
         .btn {
@@ -216,33 +333,65 @@
             transition: all var(--transition-base);
             position: relative;
         }
+
         .btn--primary {
             background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
             color: var(--color-white);
             box-shadow: 0 4px 15px var(--color-primary-glow);
         }
+
         .btn--primary:hover {
             background: linear-gradient(135deg, var(--color-primary-light), var(--color-primary));
             transform: translateY(-1px);
         }
+
         .btn--outline {
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             color: var(--color-text);
             background: transparent;
         }
-        .btn--outline:hover { border-color: var(--color-primary-light); color: var(--color-primary-light); }
-        .btn--danger {
-            background: rgba(239,68,68,0.15);
-            color: var(--color-error);
-            border: 1px solid rgba(239,68,68,0.3);
-        }
-        .btn--danger:hover { background: rgba(239,68,68,0.25); }
-        .btn--small { padding: 0.4rem 0.8rem; font-size: 0.8rem; }
-        .btn--full { width: 100%; }
-        .btn-group { display: flex; gap: var(--space-sm); margin-top: var(--space-md); }
 
-        .error-msg { color: var(--color-error); font-size: 0.85rem; margin-top: var(--space-sm); min-height: 1.2em; }
-        .success-msg { color: var(--color-success); font-weight: 500; }
+        .btn--outline:hover {
+            border-color: var(--color-primary-light);
+            color: var(--color-primary-light);
+        }
+
+        .btn--danger {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--color-error);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .btn--danger:hover {
+            background: rgba(239, 68, 68, 0.25);
+        }
+
+        .btn--small {
+            padding: 0.4rem 0.8rem;
+            font-size: 0.8rem;
+        }
+
+        .btn--full {
+            width: 100%;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: var(--space-sm);
+            margin-top: var(--space-md);
+        }
+
+        .error-msg {
+            color: var(--color-error);
+            font-size: 0.85rem;
+            margin-top: var(--space-sm);
+            min-height: 1.2em;
+        }
+
+        .success-msg {
+            color: var(--color-success);
+            font-weight: 500;
+        }
 
         /* ---- NEWS TABLE ---- */
         .section-title {
@@ -254,29 +403,53 @@
             letter-spacing: 1px;
             margin-bottom: var(--space-lg);
             padding-bottom: var(--space-sm);
-            border-bottom: 2px solid rgba(0,136,204,0.3);
+            border-bottom: 2px solid rgba(0, 136, 204, 0.3);
         }
+
         .card {
             background: var(--color-bg-card);
-            border: 1px solid rgba(255,255,255,0.06);
+            border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: var(--radius-md);
             padding: var(--space-xl);
             margin-bottom: var(--space-xl);
         }
+
         .news-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: var(--space-md);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             transition: background var(--transition-fast);
         }
-        .news-item:last-child { border-bottom: none; }
-        .news-item:hover { background: rgba(255,255,255,0.02); }
-        .news-item__info { flex: 1; }
-        .news-item__title { font-weight: 600; color: var(--color-white); margin-bottom: 2px; }
-        .news-item__date { font-size: 0.8rem; color: var(--color-text-muted); }
-        .news-item__actions { display: flex; gap: var(--space-sm); }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .news-item:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .news-item__info {
+            flex: 1;
+        }
+
+        .news-item__title {
+            font-weight: 600;
+            color: var(--color-white);
+            margin-bottom: 2px;
+        }
+
+        .news-item__date {
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+        }
+
+        .news-item__actions {
+            display: flex;
+            gap: var(--space-sm);
+        }
 
         /* ---- PDF GRID ---- */
         .pdf-grid {
@@ -292,17 +465,38 @@
             font-size: 0.85rem;
             transition: color var(--transition-fast);
         }
-        .back-link:hover { color: var(--color-primary-light); }
+
+        .back-link:hover {
+            color: var(--color-primary-light);
+        }
 
         /* ---- RESPONSIVE ---- */
         @media (max-width: 768px) {
-            .tabs { flex-wrap: wrap; }
-            .tab-panel { padding: var(--space-xl) var(--space-md); }
-            .pdf-grid { grid-template-columns: 1fr; }
-            .news-item { flex-direction: column; align-items: flex-start; gap: var(--space-sm); }
+            .tabs {
+                flex-wrap: wrap;
+            }
+
+            .tab-panel {
+                padding: var(--space-xl) var(--space-md);
+            }
+
+            .pdf-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .news-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--space-sm);
+            }
+
+            .news-layout {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <!-- ======= LOGIN SCREEN ======= -->
@@ -314,7 +508,8 @@
             <form id="loginForm">
                 <div class="form-group">
                     <label class="form-label" for="adminUser">Brugernavn</label>
-                    <input class="form-input" type="text" id="adminUser" placeholder="Indtast brugernavn" required autofocus>
+                    <input class="form-input" type="text" id="adminUser" placeholder="Indtast brugernavn" required
+                        autofocus>
                 </div>
                 <div class="form-group">
                     <label class="form-label" for="adminPass">Adgangskode</label>
@@ -323,12 +518,13 @@
                 <p class="error-msg" id="loginError"></p>
                 <button type="submit" class="btn btn--primary btn--full">Log ind</button>
             </form>
+            <a href="../index.html" class="login-card__back-link">← Tilbage til hjemmesiden</a>
         </div>
     </div>
 
     <!-- ======= DASHBOARD ======= -->
     <div class="dashboard" id="dashboard">
-        
+
         <!-- Top bar -->
         <div class="topbar">
             <div class="topbar__left">
@@ -338,7 +534,8 @@
             </div>
             <div style="display: flex; align-items: center; gap: var(--space-md);">
                 <a href="../index.html" class="back-link">← Tilbage til forsiden</a>
-                <button class="btn btn--outline" id="logoutBtn" onclick="sessionStorage.removeItem('fam_admin'); location.reload();">Log ud</button>
+                <button class="btn btn--outline" id="logoutBtn"
+                    onclick="sessionStorage.removeItem('fam_admin'); location.reload();">Log ud</button>
             </div>
         </div>
 
@@ -350,9 +547,9 @@
 
         <!-- ======= TAB: NEWS ======= -->
         <div class="tab-panel active" id="tab-news">
-            
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-2xl); align-items: start;">
-                
+
+            <div class="news-layout">
+
                 <!-- Add / Edit Form -->
                 <div class="card">
                     <h2 class="section-title" id="newsFormTitle">Tilføj nyhed</h2>
@@ -360,11 +557,13 @@
                         <input type="hidden" id="newsEditId" value="">
                         <div class="form-group">
                             <label class="form-label" for="newsTitle">Overskrift *</label>
-                            <input class="form-input" type="text" id="newsTitle" placeholder="Nyhedens overskrift" required>
+                            <input class="form-input" type="text" id="newsTitle" placeholder="Nyhedens overskrift"
+                                required>
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="newsContent">Indhold *</label>
-                            <textarea class="form-textarea" id="newsContent" rows="5" placeholder="Skriv nyhedens indhold her..." required></textarea>
+                            <textarea class="form-textarea" id="newsContent" rows="5"
+                                placeholder="Skriv nyhedens indhold her..." required></textarea>
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="newsImage">Billede URL (valgfrit)</label>
@@ -372,7 +571,8 @@
                         </div>
                         <div class="btn-group">
                             <button type="submit" class="btn btn--primary" id="newsSubmitBtn">Tilføj nyhed</button>
-                            <button type="button" class="btn btn--outline" id="newsCancelEdit" style="display:none;">Annuller</button>
+                            <button type="button" class="btn btn--outline" id="newsCancelEdit"
+                                style="display:none;">Annuller</button>
                         </div>
                     </form>
                 </div>
@@ -392,8 +592,10 @@
         <!-- ======= TAB: PDFS ======= -->
         <div class="tab-panel" id="tab-pdfs">
             <h2 class="section-title">Administrer PDF Links</h2>
-            <p style="color: var(--color-text-secondary); margin-bottom: var(--space-xl); font-size: 0.9rem;">Indsæt en web-adresse (URL) til en PDF for at overskrive den standard fil der vises på de offentlige undersider. Efterlad feltet blankt for at bruge filerne i assets/pdf/ mappen.</p>
-            
+            <p style="color: var(--color-text-secondary); margin-bottom: var(--space-xl); font-size: 0.9rem;">Indsæt en
+                web-adresse (URL) til en PDF for at overskrive den standard fil der vises på de offentlige undersider.
+                Efterlad feltet blankt for at bruge filerne i assets/pdf/ mappen.</p>
+
             <div class="card">
                 <div class="pdf-grid">
                     <div class="form-group">
@@ -431,126 +633,136 @@
     </div>
 
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', () => {
 
-        // ---- CONFIG ----
-        const ADMIN_USER = 'admin';
-        const ADMIN_PASS = 'fam2026';
+            // ---- CONFIG ----
+            const ADMIN_USER = 'admin';
+            const ADMIN_PASS = 'fam2026';
 
-        // ---- DOM ----
-        const loginScreen   = document.getElementById('loginScreen');
-        const dashboard     = document.getElementById('dashboard');
-        const loginForm     = document.getElementById('loginForm');
-        const loginError    = document.getElementById('loginError');
-        const logoutBtn     = document.getElementById('logoutBtn');
+            // ---- DOM ----
+            const loginScreen = document.getElementById('loginScreen');
+            const dashboard = document.getElementById('dashboard');
+            const loginForm = document.getElementById('loginForm');
+            const loginError = document.getElementById('loginError');
+            const logoutBtn = document.getElementById('logoutBtn');
 
-        const newsForm      = document.getElementById('newsForm');
-        const newsEditId    = document.getElementById('newsEditId');
-        const newsTitle     = document.getElementById('newsTitle');
-        const newsContent   = document.getElementById('newsContent');
-        const newsImage     = document.getElementById('newsImage');
-        const newsSubmitBtn = document.getElementById('newsSubmitBtn');
-        const newsCancelEdit = document.getElementById('newsCancelEdit');
-        const newsFormTitle = document.getElementById('newsFormTitle');
-        const adminNewsList = document.getElementById('adminNewsList');
+            const newsForm = document.getElementById('newsForm');
+            const newsEditId = document.getElementById('newsEditId');
+            const newsTitle = document.getElementById('newsTitle');
+            const newsContent = document.getElementById('newsContent');
+            const newsImage = document.getElementById('newsImage');
+            const newsSubmitBtn = document.getElementById('newsSubmitBtn');
+            const newsCancelEdit = document.getElementById('newsCancelEdit');
+            const newsFormTitle = document.getElementById('newsFormTitle');
+            const adminNewsList = document.getElementById('adminNewsList');
 
-        let isLoggedIn = sessionStorage.getItem('fam_admin') === 'true';
+            // Keep PDF field config early so loadPdfValues() can safely run on init.
+            const pdfFields = [
+                { id: 'pdfUrlKalender', key: 'fam_pdf_kalender' },
+                { id: 'pdfUrlVedtaegterFhmck', key: 'fam_pdf_vedtaegter_fhmck' },
+                { id: 'pdfUrlVedtaegterFam', key: 'fam_pdf_vedtaegter_fam' },
+                { id: 'pdfUrlReferatFhmck', key: 'fam_pdf_referat_fhmck' },
+                { id: 'pdfUrlReferatFam', key: 'fam_pdf_referat_fam' },
+                { id: 'pdfUrlNyhedsbrev', key: 'fam_pdf_nyhedsbrev' }
+            ];
 
-        // ---- INIT ----
-        if (isLoggedIn) {
-            showDashboard();
-        }
+            let isLoggedIn = sessionStorage.getItem('fam_admin') === 'true';
 
-        // ---- LOGIN ----
-        loginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const user = document.getElementById('adminUser').value.trim();
-            const pass = document.getElementById('adminPass').value;
-
-            if (user === ADMIN_USER && pass === ADMIN_PASS) {
-                isLoggedIn = true;
-                sessionStorage.setItem('fam_admin', 'true');
+            // ---- INIT ----
+            if (isLoggedIn) {
                 showDashboard();
-            } else {
-                loginError.textContent = 'Forkert brugernavn eller adgangskode.';
-                document.getElementById('adminPass').value = '';
-                document.getElementById('adminPass').focus();
             }
-        });
 
-        // ---- LOGOUT ----
-        logoutBtn.addEventListener('click', () => {
-            sessionStorage.removeItem('fam_admin');
-            location.reload();
-        });
+            // ---- LOGIN ----
+            loginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const user = document.getElementById('adminUser').value.trim();
+                const pass = document.getElementById('adminPass').value;
 
-        // ---- SHOW DASHBOARD ----
-        function showDashboard() {
-            loginScreen.classList.add('hidden');
-            dashboard.classList.add('active');
-            renderNewsList();
-            loadPdfValues();
-        }
-
-        // ========== TABS ==========
-        document.querySelectorAll('.tab-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-                document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-                btn.classList.add('active');
-                document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
-            });
-        });
-
-        // ========== NEWS CRUD ==========
-        newsForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const news = JSON.parse(localStorage.getItem('fam_news') || '[]');
-            const editId = newsEditId.value;
-
-            if (editId) {
-                const idx = news.findIndex(n => n.id === editId);
-                if (idx !== -1) {
-                    news[idx].title = newsTitle.value.trim();
-                    news[idx].content = newsContent.value.trim();
-                    news[idx].image = newsImage.value.trim();
+                if (user === ADMIN_USER && pass === ADMIN_PASS) {
+                    isLoggedIn = true;
+                    sessionStorage.setItem('fam_admin', 'true');
+                    showDashboard();
+                } else {
+                    loginError.textContent = 'Forkert brugernavn eller adgangskode.';
+                    document.getElementById('adminPass').value = '';
+                    document.getElementById('adminPass').focus();
                 }
-                resetNewsForm();
-            } else {
-                news.unshift({
-                    id: Date.now().toString(),
-                    title: newsTitle.value.trim(),
-                    date: new Date().toISOString().split('T')[0],
-                    content: newsContent.value.trim(),
-                    image: newsImage.value.trim()
+            });
+
+            // ---- LOGOUT ----
+            logoutBtn.addEventListener('click', () => {
+                sessionStorage.removeItem('fam_admin');
+                location.reload();
+            });
+
+            // ---- SHOW DASHBOARD ----
+            function showDashboard() {
+                loginScreen.classList.add('hidden');
+                dashboard.classList.add('active');
+                renderNewsList();
+                loadPdfValues();
+            }
+
+            // ========== TABS ==========
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+                    btn.classList.add('active');
+                    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
                 });
+            });
+
+            // ========== NEWS CRUD ==========
+            newsForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const news = JSON.parse(localStorage.getItem('fam_news') || '[]');
+                const editId = newsEditId.value;
+
+                if (editId) {
+                    const idx = news.findIndex(n => n.id === editId);
+                    if (idx !== -1) {
+                        news[idx].title = newsTitle.value.trim();
+                        news[idx].content = newsContent.value.trim();
+                        news[idx].image = newsImage.value.trim();
+                    }
+                    resetNewsForm();
+                } else {
+                    news.unshift({
+                        id: Date.now().toString(),
+                        title: newsTitle.value.trim(),
+                        date: new Date().toISOString().split('T')[0],
+                        content: newsContent.value.trim(),
+                        image: newsImage.value.trim()
+                    });
+                }
+
+                localStorage.setItem('fam_news', JSON.stringify(news));
+                newsForm.reset();
+                renderNewsList();
+            });
+
+            newsCancelEdit.addEventListener('click', resetNewsForm);
+
+            function resetNewsForm() {
+                newsForm.reset();
+                newsEditId.value = '';
+                newsSubmitBtn.textContent = 'Tilføj nyhed';
+                newsFormTitle.textContent = 'Tilføj nyhed';
+                newsCancelEdit.style.display = 'none';
             }
 
-            localStorage.setItem('fam_news', JSON.stringify(news));
-            newsForm.reset();
-            renderNewsList();
-        });
+            function renderNewsList() {
+                const news = JSON.parse(localStorage.getItem('fam_news') || '[]');
+                news.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-        newsCancelEdit.addEventListener('click', resetNewsForm);
+                if (news.length === 0) {
+                    adminNewsList.innerHTML = '<p style="color: var(--color-text-muted); padding: var(--space-xl); text-align: center;">Ingen nyheder endnu. Tilføj den første!</p>';
+                    return;
+                }
 
-        function resetNewsForm() {
-            newsForm.reset();
-            newsEditId.value = '';
-            newsSubmitBtn.textContent = 'Tilføj nyhed';
-            newsFormTitle.textContent = 'Tilføj nyhed';
-            newsCancelEdit.style.display = 'none';
-        }
-
-        function renderNewsList() {
-            const news = JSON.parse(localStorage.getItem('fam_news') || '[]');
-            news.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-            if (news.length === 0) {
-                adminNewsList.innerHTML = '<p style="color: var(--color-text-muted); padding: var(--space-xl); text-align: center;">Ingen nyheder endnu. Tilføj den første!</p>';
-                return;
-            }
-
-            adminNewsList.innerHTML = news.map(item => `
+                adminNewsList.innerHTML = news.map(item => `
                 <div class="news-item">
                     <div class="news-item__info">
                         <div class="news-item__title">${escapeHtml(item.title)}</div>
@@ -562,81 +774,73 @@
                     </div>
                 </div>
             `).join('');
-        }
-
-        // Event delegation for edit/delete
-        adminNewsList.addEventListener('click', (e) => {
-            const editBtn = e.target.closest('.edit-btn');
-            const deleteBtn = e.target.closest('.delete-btn');
-
-            if (editBtn) {
-                const id = editBtn.dataset.id;
-                const news = JSON.parse(localStorage.getItem('fam_news') || '[]');
-                const item = news.find(n => n.id === id);
-                if (!item) return;
-
-                newsEditId.value = item.id;
-                newsTitle.value = item.title;
-                newsContent.value = item.content;
-                newsImage.value = item.image || '';
-                newsSubmitBtn.textContent = 'Gem ændringer';
-                newsFormTitle.textContent = 'Rediger nyhed';
-                newsCancelEdit.style.display = 'inline-flex';
-                newsTitle.focus();
-                // scroll to form
-                document.getElementById('tab-news').scrollIntoView({ behavior: 'smooth' });
             }
 
-            if (deleteBtn) {
-                const id = deleteBtn.dataset.id;
-                if (!confirm('Er du sikker på du vil slette denne nyhed?')) return;
+            // Event delegation for edit/delete
+            adminNewsList.addEventListener('click', (e) => {
+                const editBtn = e.target.closest('.edit-btn');
+                const deleteBtn = e.target.closest('.delete-btn');
 
-                let news = JSON.parse(localStorage.getItem('fam_news') || '[]');
-                news = news.filter(n => n.id !== id);
-                localStorage.setItem('fam_news', JSON.stringify(news));
-                renderNewsList();
-            }
-        });
+                if (editBtn) {
+                    const id = editBtn.dataset.id;
+                    const news = JSON.parse(localStorage.getItem('fam_news') || '[]');
+                    const item = news.find(n => n.id === id);
+                    if (!item) return;
 
-        // ========== PDF MANAGEMENT ==========
-        const pdfFields = [
-            { id: 'pdfUrlKalender',       key: 'fam_pdf_kalender' },
-            { id: 'pdfUrlVedtaegterFhmck', key: 'fam_pdf_vedtaegter_fhmck' },
-            { id: 'pdfUrlVedtaegterFam',   key: 'fam_pdf_vedtaegter_fam' },
-            { id: 'pdfUrlReferatFhmck',    key: 'fam_pdf_referat_fhmck' },
-            { id: 'pdfUrlReferatFam',      key: 'fam_pdf_referat_fam' },
-            { id: 'pdfUrlNyhedsbrev',      key: 'fam_pdf_nyhedsbrev' }
-        ];
+                    newsEditId.value = item.id;
+                    newsTitle.value = item.title;
+                    newsContent.value = item.content;
+                    newsImage.value = item.image || '';
+                    newsSubmitBtn.textContent = 'Gem ændringer';
+                    newsFormTitle.textContent = 'Rediger nyhed';
+                    newsCancelEdit.style.display = 'inline-flex';
+                    newsTitle.focus();
+                    // scroll to form
+                    document.getElementById('tab-news').scrollIntoView({ behavior: 'smooth' });
+                }
 
-        function loadPdfValues() {
-            pdfFields.forEach(f => {
-                const el = document.getElementById(f.id);
-                if (el) el.value = localStorage.getItem(f.key) || '';
-            });
-        }
+                if (deleteBtn) {
+                    const id = deleteBtn.dataset.id;
+                    if (!confirm('Er du sikker på du vil slette denne nyhed?')) return;
 
-        document.getElementById('btnSavePdfs').addEventListener('click', () => {
-            pdfFields.forEach(f => {
-                const val = document.getElementById(f.id).value.trim();
-                if (val === '') {
-                    localStorage.removeItem(f.key);
-                } else {
-                    localStorage.setItem(f.key, val);
+                    let news = JSON.parse(localStorage.getItem('fam_news') || '[]');
+                    news = news.filter(n => n.id !== id);
+                    localStorage.setItem('fam_news', JSON.stringify(news));
+                    renderNewsList();
                 }
             });
-            const status = document.getElementById('pdfSaveStatus');
-            status.style.display = 'inline';
-            setTimeout(() => { status.style.display = 'none'; }, 3000);
-        });
 
-        // ---- HELPER ----
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
-    });
+            // ========== PDF MANAGEMENT ==========
+            function loadPdfValues() {
+                pdfFields.forEach(f => {
+                    const el = document.getElementById(f.id);
+                    if (el) el.value = localStorage.getItem(f.key) || '';
+                });
+            }
+
+            document.getElementById('btnSavePdfs').addEventListener('click', () => {
+                pdfFields.forEach(f => {
+                    const val = document.getElementById(f.id).value.trim();
+                    if (val === '') {
+                        localStorage.removeItem(f.key);
+                    } else {
+                        localStorage.setItem(f.key, val);
+                    }
+                });
+                const status = document.getElementById('pdfSaveStatus');
+                status.style.display = 'inline';
+                setTimeout(() => { status.style.display = 'none'; }, 3000);
+            });
+
+            // ---- HELPER ----
+            function escapeHtml(text) {
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            }
+        });
     </script>
 
 </body>
+
 </html>

@@ -3,15 +3,25 @@
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
-    
+
+    // ---- APPLY SAVED THEME ----
+    const savedTheme = localStorage.getItem('fam_theme');
+    document.body.setAttribute('data-theme', savedTheme === 'light' ? 'light' : 'dark');
+
     // ---- MOBILE MENU TOGGLE ----
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('navMenu');
+
+    const syncMenuState = () => {
+        const isOpen = navMenu && navMenu.classList.contains('active');
+        document.body.classList.toggle('menu-open', !!isOpen);
+    };
 
     if (hamburger && navMenu) {
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
+            syncMenuState();
         });
 
         // Close menu when a link is clicked
@@ -20,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
             link.addEventListener('click', () => {
                 hamburger.classList.remove('active');
                 navMenu.classList.remove('active');
+                syncMenuState();
             });
         });
     }
@@ -32,24 +43,35 @@ document.addEventListener('DOMContentLoaded', () => {
                 e.preventDefault();
                 const menu = toggle.nextElementSibling;
                 if (menu) {
-                    menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+                    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
                 }
             }
         });
     });
 
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+            if (navMenu) navMenu.classList.remove('active');
+            if (hamburger) hamburger.classList.remove('active');
+            document.body.classList.remove('menu-open');
+            document.querySelectorAll('.dropdown__menu').forEach(menu => {
+                menu.style.display = '';
+            });
+        }
+    });
+
     // ---- SET ACTIVE NAV LINK ----
     const currentPath = window.location.pathname;
     const allLinks = document.querySelectorAll('.navbar__link, .dropdown__link');
-    
+
     allLinks.forEach(link => {
         link.classList.remove('active');
         const href = link.getAttribute('href');
-        
+
         // Very simple active state matching
         if (href && currentPath.includes(href.replace('../', '').replace('./', ''))) {
             link.classList.add('active');
-            
+
             // If it's a dropdown link, also highlight the parent
             if (link.classList.contains('dropdown__link')) {
                 const parentDropdown = link.closest('.navbar__dropdown');
@@ -64,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ---- LOAD PDF URLS (Admin override support) ----
     // We check if admin has set custom URLs for PDFs in localStorage
     // If not, we fall back to the defaults uploaded to assets/pdf/
-    
+
     function loadPdf(elementId, localStorageKey, defaultPath) {
         const iframe = document.getElementById(elementId);
         if (iframe) {
@@ -75,11 +97,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Load Kalender
     loadPdf('pdfKalender', 'fam_pdf_kalender', '../assets/pdf/kalender.pdf');
-    
+
     // Load Vedtægter
     loadPdf('pdfVedtaegterFam', 'fam_pdf_vedtaegter_fam', '../assets/pdf/vedtaegter-fam.pdf');
     loadPdf('pdfVedtaegterFhmck', 'fam_pdf_vedtaegter_fhmck', '../assets/pdf/vedtaegter-fhmck.pdf');
-    
+
     // Load Referater (Assuming nyhedsbrev is also handled here)
     loadPdf('pdfReferatFam', 'fam_pdf_referat_fam', '../assets/pdf/generalforsamling-fam.pdf');
     loadPdf('pdfReferatFhmck', 'fam_pdf_referat_fhmck', '../assets/pdf/generalforsamling-fhmck.pdf');

@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="da">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kontakt | FAM Kejserdalen</title>
     <meta name="description" content="Kontakt FAM Kejserdalen – send os en henvendelse via formularen.">
-    
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Rajdhani:wght@500;600;700;800&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Rajdhani:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+
     <!-- CSS -->
     <link rel="stylesheet" href="../css/style.css">
-    
+
     <!-- JS -->
     <script src="../js/subpage.js" defer></script>
 </head>
+
 <body>
 
     <!-- ======= NAVBAR ======= -->
@@ -25,14 +29,16 @@
             <a href="../index.html" class="navbar__logo">
                 <img src="../assets/images/logo.png" alt="FAM Kejserdalen Logo" class="navbar__logo-img">
             </a>
-            
+
             <nav class="navbar__nav" id="navMenu">
                 <a href="../index.html" class="navbar__link">Hjem</a>
-                <a href="https://kejserdalen.nemtilmeld.dk/?fbclid=IwY2xjawFP-apleHRuA2FlbQIxMAABHRqCk-J15rfGJ6o_tkZ6F2Ca1nFHQtTq5d6O7MbKapPP2cWGJdafz0RNQw_aem_7qx7fho8AO3H0dyfP2xFcg" class="navbar__link" target="_blank" rel="noopener">NemTilmeld</a>
-                
+                <a href="https://kejserdalen.nemtilmeld.dk/?fbclid=IwY2xjawFP-apleHRuA2FlbQIxMAABHRqCk-J15rfGJ6o_tkZ6F2Ca1nFHQtTq5d6O7MbKapPP2cWGJdafz0RNQw_aem_7qx7fho8AO3H0dyfP2xFcg"
+                    class="navbar__link" target="_blank" rel="noopener">NemTilmeld</a>
+
                 <!-- Klubben Dropdown -->
                 <div class="navbar__dropdown">
-                    <button class="navbar__link dropdown__toggle">Klubben <span class="dropdown__icon" style="font-size:0.8em; margin-left:4px;">▼</span></button>
+                    <button class="navbar__link dropdown__toggle">Klubben <span class="dropdown__icon"
+                            style="font-size:0.8em; margin-left:4px;">▼</span></button>
                     <div class="dropdown__menu">
                         <a href="../klubben/kalender.html" class="dropdown__link">Aktivitetskalender</a>
                         <a href="../klubben/bestyrelse.html" class="dropdown__link">Bestyrelse</a>
@@ -43,7 +49,8 @@
 
                 <!-- Banen Dropdown -->
                 <div class="navbar__dropdown">
-                    <button class="navbar__link dropdown__toggle">Banen <span class="dropdown__icon" style="font-size:0.8em; margin-left:4px;">▼</span></button>
+                    <button class="navbar__link dropdown__toggle">Banen <span class="dropdown__icon"
+                            style="font-size:0.8em; margin-left:4px;">▼</span></button>
                     <div class="dropdown__menu">
                         <a href="../index.html#banen" class="dropdown__link">Om banen</a>
                         <a href="traeningstider.html" class="dropdown__link">Træningstider</a>
@@ -53,7 +60,8 @@
 
                 <!-- Kom i gang Dropdown -->
                 <div class="navbar__dropdown">
-                    <button class="navbar__link dropdown__toggle">Kom i gang <span class="dropdown__icon" style="font-size:0.8em; margin-left:4px;">▼</span></button>
+                    <button class="navbar__link dropdown__toggle">Kom i gang <span class="dropdown__icon"
+                            style="font-size:0.8em; margin-left:4px;">▼</span></button>
                     <div class="dropdown__menu">
                         <a href="kom-i-gang.html" class="dropdown__link">Motocross</a>
                         <a href="bliv-frivillig.html" class="dropdown__link">Bliv frivillig</a>
@@ -76,31 +84,37 @@
     <section class="subpage-hero">
         <div class="container">
             <h1 class="subpage-hero__title">Kontakt os</h1>
-            <p class="subpage-hero__subtitle">Har du spørgsmål, ønsker du at blive frivillig, eller vil du vide mere? Send os en besked.</p>
+            <p class="subpage-hero__subtitle">Har du spørgsmål, ønsker du at blive frivillig, eller vil du vide mere?
+                Send os en besked.</p>
         </div>
     </section>
 
     <!-- ======= CONTENT ======= -->
     <main class="subpage-content">
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3xl); align-items: start;">
-            
+        <div class="contact-layout">
+
             <!-- Contact Form -->
             <div class="board-card" style="padding: var(--space-2xl);">
                 <h2 class="board-section__title" style="margin-bottom: var(--space-xl);">Send en henvendelse</h2>
                 <form id="contactForm" style="display: flex; flex-direction: column; gap: var(--space-lg);">
                     <div>
-                        <label for="contactName" style="display: block; margin-bottom: var(--space-xs); color: var(--color-text-secondary); font-size: 0.9rem; font-weight: 500;">Navn *</label>
+                        <label for="contactName"
+                            style="display: block; margin-bottom: var(--space-xs); color: var(--color-text-secondary); font-size: 0.9rem; font-weight: 500;">Navn
+                            *</label>
                         <input type="text" id="contactName" name="name" required placeholder="Dit fulde navn"
                             style="width: 100%; padding: 0.75rem 1rem; background: var(--color-bg); border: 1px solid rgba(255,255,255,0.15); border-radius: var(--radius-md); color: var(--color-text); outline: none; transition: border-color 0.2s;">
                     </div>
                     <div>
-                        <label for="contactEmail" style="display: block; margin-bottom: var(--space-xs); color: var(--color-text-secondary); font-size: 0.9rem; font-weight: 500;">E-mail *</label>
+                        <label for="contactEmail"
+                            style="display: block; margin-bottom: var(--space-xs); color: var(--color-text-secondary); font-size: 0.9rem; font-weight: 500;">E-mail
+                            *</label>
                         <input type="email" id="contactEmail" name="email" required placeholder="din@email.dk"
                             style="width: 100%; padding: 0.75rem 1rem; background: var(--color-bg); border: 1px solid rgba(255,255,255,0.15); border-radius: var(--radius-md); color: var(--color-text); outline: none; transition: border-color 0.2s;">
                     </div>
                     <div>
-                        <label for="contactSubject" style="display: block; margin-bottom: var(--space-xs); color: var(--color-text-secondary); font-size: 0.9rem; font-weight: 500;">Emne</label>
+                        <label for="contactSubject"
+                            style="display: block; margin-bottom: var(--space-xs); color: var(--color-text-secondary); font-size: 0.9rem; font-weight: 500;">Emne</label>
                         <select id="contactSubject" name="subject"
                             style="width: 100%; padding: 0.75rem 1rem; background: var(--color-bg); border: 1px solid rgba(255,255,255,0.15); border-radius: var(--radius-md); color: var(--color-text); outline: none;">
                             <option value="generelt">Generel henvendelse</option>
@@ -112,12 +126,17 @@
                         </select>
                     </div>
                     <div>
-                        <label for="contactMessage" style="display: block; margin-bottom: var(--space-xs); color: var(--color-text-secondary); font-size: 0.9rem; font-weight: 500;">Besked *</label>
-                        <textarea id="contactMessage" name="message" required rows="6" placeholder="Skriv din besked her..."
+                        <label for="contactMessage"
+                            style="display: block; margin-bottom: var(--space-xs); color: var(--color-text-secondary); font-size: 0.9rem; font-weight: 500;">Besked
+                            *</label>
+                        <textarea id="contactMessage" name="message" required rows="6"
+                            placeholder="Skriv din besked her..."
                             style="width: 100%; padding: 0.75rem 1rem; background: var(--color-bg); border: 1px solid rgba(255,255,255,0.15); border-radius: var(--radius-md); color: var(--color-text); outline: none; resize: vertical; transition: border-color 0.2s;"></textarea>
                     </div>
                     <button type="submit" class="btn btn--primary btn--full" id="contactSubmitBtn">Send besked</button>
-                    <p id="contactSuccess" style="display: none; color: var(--color-success); text-align: center; font-weight: 500;">✓ Tak for din besked! Vi vender tilbage hurtigst muligt.</p>
+                    <p id="contactSuccess"
+                        style="display: none; color: var(--color-success); text-align: center; font-weight: 500;">✓ Tak
+                        for din besked! Vi vender tilbage hurtigst muligt.</p>
                 </form>
             </div>
 
@@ -134,30 +153,32 @@
                 </div>
                 <div class="board-card" style="padding: var(--space-xl);">
                     <h3 class="board-card__name" style="margin-bottom: var(--space-md);">Find os på kortet</h3>
-                    <iframe 
+                    <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2235.7!2d12.4894!3d55.9647!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTXCsDU3JzUzLjAiTiAxMsKwMjknMjEuOCJF!5e0!3m2!1sda!2sdk!4v1"
-                        width="100%" height="250" style="border:0; border-radius: var(--radius-md);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                        width="100%" height="250" style="border:0; border-radius: var(--radius-md);" allowfullscreen=""
+                        loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                     </iframe>
                 </div>
                 <div class="board-card" style="padding: var(--space-xl);">
                     <h3 class="board-card__name" style="margin-bottom: var(--space-md);">Sociale medier</h3>
                     <div style="display: flex; gap: var(--space-md);">
-                        <a href="https://www.facebook.com/groups/208129055985299" target="_blank" rel="noopener" class="btn btn--outline" style="flex: 1; text-align: center;">Facebook →</a>
+                        <a href="https://www.facebook.com/groups/208129055985299" target="_blank" rel="noopener"
+                            class="btn btn--outline" style="flex: 1; text-align: center;">Facebook →</a>
                     </div>
                 </div>
             </div>
         </div>
 
         <script>
-            document.getElementById('contactForm').addEventListener('submit', function(e) {
+            document.getElementById('contactForm').addEventListener('submit', function (e) {
                 e.preventDefault();
                 const btn = document.getElementById('contactSubmitBtn');
                 const msg = document.getElementById('contactSuccess');
                 btn.textContent = 'Sender...';
                 btn.disabled = true;
-                
+
                 // Simuler afsendelse (erstat med rigtig backend senere)
-                setTimeout(function() {
+                setTimeout(function () {
                     btn.style.display = 'none';
                     msg.style.display = 'block';
                     document.getElementById('contactForm').reset();
@@ -165,12 +186,12 @@
             });
 
             // Focus-styling for input felter
-            document.querySelectorAll('#contactForm input, #contactForm textarea, #contactForm select').forEach(function(el) {
-                el.addEventListener('focus', function() {
+            document.querySelectorAll('#contactForm input, #contactForm textarea, #contactForm select').forEach(function (el) {
+                el.addEventListener('focus', function () {
                     this.style.borderColor = 'var(--color-primary-light)';
                     this.style.boxShadow = '0 0 0 3px var(--color-primary-glow)';
                 });
-                el.addEventListener('blur', function() {
+                el.addEventListener('blur', function () {
                     this.style.borderColor = 'rgba(255,255,255,0.15)';
                     this.style.boxShadow = 'none';
                 });
@@ -189,14 +210,14 @@
                         <p class="footer__brand-name">FAM / FHMCK</p>
                         <p class="footer__brand-sub">Frederiksborg Amts &<br>Fredensborg Humlebæk<br>Motocross Klub</p>
                     </div>
-                    
+
                     <div class="footer__info">
                         <h3 class="footer__heading">Kontakt</h3>
                         <p>Humlebækvej 64B</p>
                         <p>3480 Fredensborg</p>
                         <p>Danmark</p>
                     </div>
-                    
+
                     <div class="footer__links">
                         <h3 class="footer__heading">Genveje</h3>
                         <a href="../index.html#klubben">Om klubben</a>
@@ -204,20 +225,23 @@
                         <a href="../banen/kom-i-gang.html">Kom i gang</a>
                         <a href="../index.html#nyheder">Nyheder</a>
                     </div>
-                    
+
                     <div class="footer__social">
                         <h3 class="footer__heading">Følg os</h3>
                         <div class="footer__social-links">
-                            <a href="https://www.facebook.com/groups/208129055985299" target="_blank" rel="noopener" class="footer__social-link" aria-label="Facebook">
+                            <a href="https://www.facebook.com/groups/208129055985299" target="_blank" rel="noopener"
+                                class="footer__social-link" aria-label="Facebook">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
                                 </svg>
                             </a>
-                            <a href="https://instagram.com" target="_blank" rel="noopener" class="footer__social-link" aria-label="Instagram">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                            <a href="https://www.instagram.com/dmusport/" target="_blank" rel="noopener"
+                                class="footer__social-link" aria-label="Instagram">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
                                 </svg>
                             </a>
                         </div>
@@ -238,4 +262,5 @@
     </footer>
 
 </body>
+
 </html>

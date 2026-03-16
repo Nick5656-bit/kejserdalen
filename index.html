@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html lang="da">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Frederiksborg Amts Motorklub (FAM) – Motocross klub i Fredensborg. Kejserdalen banen. Bliv medlem, kør motocross, og vær en del af fællesskabet.">
+    <meta name="description"
+        content="Frederiksborg Amts Motorklub (FAM) – Motocross klub i Fredensborg. Kejserdalen banen. Bliv medlem, kør motocross, og vær en del af fællesskabet.">
     <title>FAM Kejserdalen – Frederiksborg Amts Motorklub</title>
-    
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
     <!-- Stylesheets -->
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
     <!-- ======= NAVBAR ======= -->
@@ -22,12 +27,14 @@
             <a href="#hjem" class="navbar__logo">
                 <img src="assets/images/logo.png" alt="FAM Logo" class="navbar__logo-img">
             </a>
-            
+
             <nav class="navbar__nav" id="navMenu">
                 <a href="#hjem" class="navbar__link active">Hjem</a>
-                <a href="https://kejserdalen.nemtilmeld.dk/?fbclid=IwY2xjawFP-apleHRuA2FlbQIxMAABHRqCk-J15rfGJ6o_tkZ6F2Ca1nFHQtTq5d6O7MbKapPP2cWGJdafz0RNQw_aem_7qx7fho8AO3H0dyfP2xFcg" class="navbar__link" target="_blank" rel="noopener">NemTilmeld</a>
+                <a href="https://kejserdalen.nemtilmeld.dk/?fbclid=IwY2xjawFP-apleHRuA2FlbQIxMAABHRqCk-J15rfGJ6o_tkZ6F2Ca1nFHQtTq5d6O7MbKapPP2cWGJdafz0RNQw_aem_7qx7fho8AO3H0dyfP2xFcg"
+                    class="navbar__link" target="_blank" rel="noopener">NemTilmeld</a>
                 <div class="navbar__dropdown">
-                    <button class="navbar__link dropdown__toggle">Klubben <span class="dropdown__icon" style="font-size:0.8em; margin-left:4px;">▼</span></button>
+                    <button class="navbar__link dropdown__toggle">Klubben <span class="dropdown__icon"
+                            style="font-size:0.8em; margin-left:4px;">▼</span></button>
                     <div class="dropdown__menu">
                         <a href="klubben/kalender.html" class="dropdown__link">Aktivitetskalender</a>
                         <a href="klubben/bestyrelse.html" class="dropdown__link">Bestyrelse</a>
@@ -37,7 +44,8 @@
                 </div>
                 <!-- Banen Dropdown -->
                 <div class="navbar__dropdown">
-                    <button class="navbar__link dropdown__toggle">Banen <span class="dropdown__icon" style="font-size:0.8em; margin-left:4px;">▼</span></button>
+                    <button class="navbar__link dropdown__toggle">Banen <span class="dropdown__icon"
+                            style="font-size:0.8em; margin-left:4px;">▼</span></button>
                     <div class="dropdown__menu">
                         <a href="#banen" class="dropdown__link">Om banen</a>
                         <a href="banen/traeningstider.html" class="dropdown__link">Træningstider</a>
@@ -46,7 +54,8 @@
                 </div>
                 <!-- Kom i gang Dropdown -->
                 <div class="navbar__dropdown">
-                    <button class="navbar__link dropdown__toggle">Kom i gang <span class="dropdown__icon" style="font-size:0.8em; margin-left:4px;">▼</span></button>
+                    <button class="navbar__link dropdown__toggle">Kom i gang <span class="dropdown__icon"
+                            style="font-size:0.8em; margin-left:4px;">▼</span></button>
                     <div class="dropdown__menu">
                         <a href="banen/kom-i-gang.html" class="dropdown__link">Motocross</a>
                         <a href="banen/bliv-frivillig.html" class="dropdown__link">Bliv frivillig</a>
@@ -58,10 +67,33 @@
             </nav>
 
             <div class="navbar__actions">
+                <button class="navbar__theme-toggle" id="themeToggle" type="button" aria-label="Skift tema"
+                    title="Skift tema">
+                    <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <circle cx="12" cy="12" r="4" />
+                            <path d="M12 2v2" />
+                            <path d="M12 20v2" />
+                            <path d="M4.93 4.93l1.41 1.41" />
+                            <path d="M17.66 17.66l1.41 1.41" />
+                            <path d="M2 12h2" />
+                            <path d="M20 12h2" />
+                            <path d="M4.93 19.07l1.41-1.41" />
+                            <path d="M17.66 6.34l1.41-1.41" />
+                        </svg>
+                    </span>
+                    <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" />
+                        </svg>
+                    </span>
+                </button>
                 <a href="admin/index.html" class="navbar__admin-btn" title="Admin Dashboard">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5z"/>
-                        <path d="M20 21v-2c0-2.2-1.8-4-4-4H8c-2.2 0-4 1.8-4 4v2"/>
+                        <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5z" />
+                        <path d="M20 21v-2c0-2.2-1.8-4-4-4H8c-2.2 0-4 1.8-4 4v2" />
                     </svg>
                 </a>
                 <button class="navbar__hamburger" id="hamburgerBtn" aria-label="Åbn menu">
@@ -79,10 +111,10 @@
             <img src="assets/images/hero-race.jpg" alt="Motocross race" class="hero__bg-img">
             <div class="hero__overlay"></div>
         </div>
-        
+
         <!-- Checkered flag decoration -->
         <div class="hero__checkered"></div>
-        
+
         <div class="hero__content">
             <div class="hero__badge">EST. FREDENSBORG</div>
             <h1 class="hero__title">
@@ -96,7 +128,7 @@
                 <a href="#klubben" class="btn btn--outline">Lær os at kende</a>
             </div>
         </div>
-        
+
         <div class="hero__scroll-indicator">
             <span>Scroll ned</span>
             <div class="hero__scroll-arrow"></div>
@@ -109,27 +141,31 @@
             <div class="quick-actions__grid">
                 <a href="#kom-i-gang" class="action-card action-card--primary reveal">
                     <div class="action-card__icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"/>
-                            <path d="M12 8v8M8 12h8"/>
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M12 8v8M8 12h8" />
                         </svg>
                     </div>
                     <h2 class="action-card__title">Ny i Motocross?</h2>
-                    <p class="action-card__text">Alt du skal vide for at komme i gang med sporten. Udstyr, træning og tilmelding.</p>
+                    <p class="action-card__text">Alt du skal vide for at komme i gang med sporten. Udstyr, træning og
+                        tilmelding.</p>
                     <span class="action-card__cta">Kom i gang <span class="arrow">→</span></span>
                 </a>
-                
+
                 <a href="#kontakt" class="action-card action-card--secondary reveal">
                     <div class="action-card__icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                            <circle cx="9" cy="7" r="4"/>
-                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                            <circle cx="9" cy="7" r="4" />
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                         </svg>
                     </div>
                     <h2 class="action-card__title">Bliv Frivillig</h2>
-                    <p class="action-card__text">Vores klub drives af frivillige ildsjæle. Kom og vær en del af holdet bag banen.</p>
+                    <p class="action-card__text">Vores klub drives af frivillige ildsjæle. Kom og vær en del af holdet
+                        bag banen.</p>
                     <span class="action-card__cta">Læs mere <span class="arrow">→</span></span>
                 </a>
             </div>
@@ -144,12 +180,15 @@
                 <h2 class="section-header__title">Klubben</h2>
                 <div class="section-header__line"></div>
             </div>
-            
+
             <div class="about__grid">
                 <div class="about__content reveal">
                     <p class="about__lead">Frederiksborg Amts Motorklub er en klub med hjertet på det rette sted.</p>
-                    <p>Vi prøver at inkludere alle medlemmer med sociale arrangementer, med motocross som omdrejningspunkt. Vi mener nemlig at der skal kunne være plads til alle.</p>
-                    <p>I forlængelse af dette, bakker vi naturligvis op om DMU's Fairplay som har fokus på respekt, ansvar & sammenhold. Sammen værner vi alle sammen om gode og trygge rammer, så alle kan dyrke motocross.</p>
+                    <p>Vi prøver at inkludere alle medlemmer med sociale arrangementer, med motocross som
+                        omdrejningspunkt. Vi mener nemlig at der skal kunne være plads til alle.</p>
+                    <p>I forlængelse af dette, bakker vi naturligvis op om DMU's Fairplay som har fokus på respekt,
+                        ansvar & sammenhold. Sammen værner vi alle sammen om gode og trygge rammer, så alle kan dyrke
+                        motocross.</p>
                     <div class="about__stats">
                         <div class="about__stat">
                             <span class="about__stat-number">50+</span>
@@ -167,7 +206,8 @@
                 </div>
                 <div class="about__gallery reveal">
                     <div class="about__gallery-grid">
-                        <img src="assets/images/race-pack.jpg" alt="Motocross race" class="about__gallery-img about__gallery-img--large">
+                        <img src="assets/images/race-pack.jpg" alt="Motocross race"
+                            class="about__gallery-img about__gallery-img--large">
                         <img src="assets/images/rider-188.jpg" alt="Motocross kører" class="about__gallery-img">
                         <img src="assets/images/race-track.jpg" alt="Kejserdalen banen" class="about__gallery-img">
                     </div>
@@ -186,7 +226,8 @@
             <div class="track__content reveal">
                 <span class="section-header__tag">Banen</span>
                 <h2 class="track__title">Kejserdalen</h2>
-                <p class="track__text">Vores bane ligger i det naturskønne område ved Fredensborg. En varieret bane med hop, sving og bakker der udfordrer kørere på alle niveauer.</p>
+                <p class="track__text">Vores bane ligger i det naturskønne område ved Fredensborg. En varieret bane med
+                    hop, sving og bakker der udfordrer kørere på alle niveauer.</p>
                 <div class="track__details">
                     <div class="track__detail">
                         <span class="track__detail-icon">📍</span>
@@ -203,7 +244,8 @@
                 </div>
                 <div style="display: flex; gap: var(--space-md); flex-wrap: wrap;">
                     <a href="banen/webcam.html" class="btn btn--primary">Se webcam</a>
-                    <a href="banen/traeningstider.html" class="btn btn--outline" style="border-width: 1px;">Se Træningstider</a>
+                    <a href="banen/traeningstider.html" class="btn btn--outline" style="border-width: 1px;">Se
+                        Træningstider</a>
                 </div>
             </div>
         </div>
@@ -217,25 +259,28 @@
                 <h2 class="section-header__title">Kom i Gang</h2>
                 <div class="section-header__line"></div>
             </div>
-            
+
             <div class="get-started__grid">
                 <div class="step-card reveal">
                     <div class="step-card__number">01</div>
                     <h3 class="step-card__title">Lær sporten at kende</h3>
-                    <p class="step-card__text">Motocross udøves på specielle motorcykler og baner med varierende terræn. Sporten kræver god kondition og bruger alle dine muskler.</p>
+                    <p class="step-card__text">Motocross udøves på specielle motorcykler og baner med varierende terræn.
+                        Sporten kræver god kondition og bruger alle dine muskler.</p>
                 </div>
                 <div class="step-card reveal">
                     <div class="step-card__number">02</div>
                     <h3 class="step-card__title">Skaf udstyret</h3>
-                    <p class="step-card__text">Du skal bruge hjelm, briller, handsker, støvler, brystbeskytter og selvfølgelig en motocross-maskine. Vi hjælper gerne med rådgivning.</p>
+                    <p class="step-card__text">Du skal bruge hjelm, briller, handsker, støvler, brystbeskytter og
+                        selvfølgelig en motocross-maskine. Vi hjælper gerne med rådgivning.</p>
                 </div>
                 <div class="step-card reveal">
                     <div class="step-card__number">03</div>
                     <h3 class="step-card__title">Udforsk muligheder</h3>
-                    <p class="step-card__text">Læs nærmere om hold og prøvekørsel, skaf en cykel og tilpas dit udstyr. Vi sørger for du føler dig velkommen fra dag ét.</p>
+                    <p class="step-card__text">Læs nærmere om hold og prøvekørsel, skaf en cykel og tilpas dit udstyr.
+                        Vi sørger for du føler dig velkommen fra dag ét.</p>
                 </div>
             </div>
-            
+
             <div class="reveal" style="text-align: center; margin-top: var(--space-2xl);">
                 <a href="banen/kom-i-gang.html" class="btn btn--primary">Læs mere om opstart</a>
             </div>
@@ -250,11 +295,11 @@
                 <h2 class="section-header__title">Seneste Nyheder</h2>
                 <div class="section-header__line"></div>
             </div>
-            
+
             <div class="news__grid" id="newsGrid">
                 <!-- News cards dynamically inserted by JS -->
             </div>
-            
+
             <div class="news__empty" id="newsEmpty" style="display: none;">
                 <p>Ingen nyheder at vise endnu.</p>
             </div>
@@ -271,14 +316,14 @@
                         <p class="footer__brand-name">FAM / FHMCK</p>
                         <p class="footer__brand-sub">Frederiksborg Amts &<br>Fredensborg Humlebæk<br>Motocross Klub</p>
                     </div>
-                    
+
                     <div class="footer__info">
-                        <h3 class="footer__heading">Kontakt</h3>
+                        <h3 class="footer__heading">Adresse</h3>
                         <p>Humlebækvej 64B</p>
                         <p>3480 Fredensborg</p>
                         <p>Danmark</p>
                     </div>
-                    
+
                     <div class="footer__links">
                         <h3 class="footer__heading">Genveje</h3>
                         <a href="#klubben">Om klubben</a>
@@ -286,20 +331,23 @@
                         <a href="banen/kom-i-gang.html">Kom i gang</a>
                         <a href="#nyheder">Nyheder</a>
                     </div>
-                    
+
                     <div class="footer__social">
                         <h3 class="footer__heading">Følg os</h3>
                         <div class="footer__social-links">
-                            <a href="https://facebook.com" target="_blank" rel="noopener" class="footer__social-link" aria-label="Facebook">
+                            <a href="https://www.facebook.com/groups/208129055985299" target="_blank" rel="noopener"
+                                class="footer__social-link" aria-label="Facebook">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
                                 </svg>
                             </a>
-                            <a href="https://instagram.com" target="_blank" rel="noopener" class="footer__social-link" aria-label="Instagram">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                            <a href="https://www.instagram.com/dmusport/" target="_blank" rel="noopener"
+                                class="footer__social-link" aria-label="Instagram">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
                                 </svg>
                             </a>
                         </div>
@@ -344,4 +392,5 @@
         }
     </script>
 </body>
+
 </html>

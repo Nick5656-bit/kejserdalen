@@ -4,6 +4,32 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+    // ---- THEME TOGGLE ----
+    const THEME_KEY = 'fam_theme';
+    const themeToggle = document.getElementById('themeToggle');
+
+    const applyTheme = (theme) => {
+        const resolvedTheme = theme === 'light' ? 'light' : 'dark';
+        document.body.setAttribute('data-theme', resolvedTheme);
+
+        if (themeToggle) {
+            const nextTheme = resolvedTheme === 'light' ? 'dark' : 'light';
+            themeToggle.setAttribute('aria-label', nextTheme === 'light' ? 'Skift til lyst tema' : 'Skift til morkt tema');
+            themeToggle.setAttribute('title', nextTheme === 'light' ? 'Skift til lyst tema' : 'Skift til morkt tema');
+        }
+    };
+
+    applyTheme(localStorage.getItem(THEME_KEY) || 'dark');
+
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const isLight = document.body.getAttribute('data-theme') === 'light';
+            const nextTheme = isLight ? 'dark' : 'light';
+            applyTheme(nextTheme);
+            localStorage.setItem(THEME_KEY, nextTheme);
+        });
+    }
+
     // ---- NAVBAR SCROLL EFFECT ----
     const navbar = document.getElementById('navbar');
     const navLinks = document.querySelectorAll('.navbar__link');
@@ -11,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const handleNavbarScroll = () => {
         if (window.scrollY > 50) {
             navbar.classList.add('navbar--scrolled');
-            
+
             // Fade out the scroll indicator
             const heroScroll = document.querySelector('.hero__scroll-indicator');
             if (heroScroll) {
@@ -20,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } else {
             navbar.classList.remove('navbar--scrolled');
-            
+
             // Fade in the scroll indicator
             const heroScroll = document.querySelector('.hero__scroll-indicator');
             if (heroScroll) {
@@ -61,17 +87,51 @@ document.addEventListener('DOMContentLoaded', () => {
     const hamburgerBtn = document.getElementById('hamburgerBtn');
     const navMenu = document.getElementById('navMenu');
 
+    const syncMenuState = () => {
+        const isOpen = navMenu.classList.contains('active');
+        document.body.classList.toggle('menu-open', isOpen);
+    };
+
     hamburgerBtn.addEventListener('click', () => {
         hamburgerBtn.classList.toggle('active');
         navMenu.classList.toggle('active');
+        syncMenuState();
     });
 
-    // Close mobile menu when clicking a link
+    // Close mobile menu when clicking a real navigation link (not dropdown toggles)
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
+            if (link.classList.contains('dropdown__toggle')) return;
             hamburgerBtn.classList.remove('active');
             navMenu.classList.remove('active');
+            syncMenuState();
         });
+    });
+
+    // Mobile dropdown toggle support on front page
+    const dropdownToggles = document.querySelectorAll('.dropdown__toggle');
+    dropdownToggles.forEach(toggle => {
+        toggle.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                const menu = toggle.nextElementSibling;
+                if (!menu) return;
+
+                const isOpen = menu.style.display === 'block';
+                menu.style.display = isOpen ? 'none' : 'block';
+            }
+        });
+    });
+
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+            navMenu.classList.remove('active');
+            hamburgerBtn.classList.remove('active');
+            document.body.classList.remove('menu-open');
+            document.querySelectorAll('.dropdown__menu').forEach(menu => {
+                menu.style.display = '';
+            });
+        }
     });
 
     // ---- SCROLL REVEAL ANIMATIONS ----
@@ -93,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ---- SMOOTH SCROLL ----
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
+        anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
@@ -103,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ---- RENDER NEWS ----
-    window.renderNews = function() {
+    window.renderNews = function () {
         const newsGrid = document.getElementById('newsGrid');
         const newsEmpty = document.getElementById('newsEmpty');
         const news = JSON.parse(localStorage.getItem('fam_news') || '[]');
@@ -140,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const newsModalBackdrop = document.getElementById('newsModalBackdrop');
     const newsModalClose = document.getElementById('newsModalClose');
 
-    window.openNewsDetail = function(id) {
+    window.openNewsDetail = function (id) {
         const news = JSON.parse(localStorage.getItem('fam_news') || '[]');
         const item = news.find(n => n.id === id);
         if (!item) return;
