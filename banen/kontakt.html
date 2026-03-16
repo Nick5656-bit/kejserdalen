@@ -174,6 +174,55 @@
                 e.preventDefault();
                 const btn = document.getElementById('contactSubmitBtn');
                 const msg = document.getElementById('contactSuccess');
+                const form = document.getElementById('contactForm');
+
+                const subjectMap = {
+                    generelt: 'Generel henvendelse',
+                    frivillig: 'Bliv frivillig',
+                    medlemskab: 'Medlemskab',
+                    traening: 'Træning',
+                    loeb: 'Løb & events',
+                    andet: 'Andet'
+                };
+
+                const name = document.getElementById('contactName').value.trim();
+                const email = document.getElementById('contactEmail').value.trim();
+                const subjectValue = document.getElementById('contactSubject').value;
+                const subject = subjectMap[subjectValue] || 'Generel henvendelse';
+                const messageText = document.getElementById('contactMessage').value.trim();
+
+                try {
+                    const key = 'fam_inbox_threads';
+                    const threads = JSON.parse(localStorage.getItem(key) || '[]');
+                    const nowIso = new Date().toISOString();
+                    const ticketNo = `KD-${Date.now().toString().slice(-6)}`;
+
+                    threads.unshift({
+                        id: `thread-${Date.now()}`,
+                        ticketNo,
+                        name,
+                        email,
+                        subject,
+                        status: 'open',
+                        createdAt: nowIso,
+                        updatedAt: nowIso,
+                        messages: [
+                            {
+                                id: `msg-${Date.now()}`,
+                                direction: 'in',
+                                senderName: name,
+                                senderEmail: email,
+                                text: messageText,
+                                createdAt: nowIso
+                            }
+                        ]
+                    });
+
+                    localStorage.setItem(key, JSON.stringify(threads));
+                } catch (err) {
+                    // Ignore storage failures so contact UX still works.
+                }
+
                 btn.textContent = 'Sender...';
                 btn.disabled = true;
 
@@ -181,7 +230,7 @@
                 setTimeout(function () {
                     btn.style.display = 'none';
                     msg.style.display = 'block';
-                    document.getElementById('contactForm').reset();
+                    form.reset();
                 }, 1200);
             });
 

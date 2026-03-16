@@ -464,6 +464,216 @@
             gap: var(--space-lg);
         }
 
+        /* ---- INBOX ---- */
+        .inbox-layout {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: var(--space-lg);
+            align-items: start;
+        }
+
+        .inbox-preview-warning {
+            margin-bottom: var(--space-lg);
+            background: rgba(239, 68, 68, 0.12);
+            border: 1px solid rgba(239, 68, 68, 0.35);
+            border-left: 4px solid var(--color-error);
+            border-radius: var(--radius-sm);
+            padding: 0.8rem 1rem;
+            color: #FFD7D7;
+            font-size: 0.92rem;
+        }
+
+        html[data-theme="light"] .inbox-preview-warning {
+            color: #8B1D1D;
+            background: rgba(239, 68, 68, 0.1);
+            border-color: rgba(239, 68, 68, 0.3);
+        }
+
+        .inbox-list {
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .inbox-list__header {
+            padding: var(--space-md) var(--space-lg);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            font-family: var(--font-heading);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--color-text-secondary);
+        }
+
+        .inbox-list__controls {
+            display: flex;
+            gap: var(--space-sm);
+            padding: var(--space-sm) var(--space-lg);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            flex-wrap: wrap;
+        }
+
+        .inbox-filter-btn.active {
+            background: var(--color-primary);
+            color: #FFFFFF;
+            border-color: transparent;
+        }
+
+        .inbox-thread-list {
+            max-height: 66vh;
+            overflow-y: auto;
+        }
+
+        .inbox-thread {
+            width: 100%;
+            border: none;
+            background: transparent;
+            color: inherit;
+            text-align: left;
+            display: block;
+            padding: var(--space-md) var(--space-lg);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+            transition: background var(--transition-fast);
+        }
+
+        .inbox-thread:hover {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .inbox-thread.active {
+            background: rgba(0, 136, 204, 0.14);
+            border-left: 3px solid var(--color-primary);
+            padding-left: calc(var(--space-lg) - 3px);
+        }
+
+        .inbox-thread__subject {
+            font-weight: 700;
+            color: var(--color-white);
+            margin-bottom: 2px;
+        }
+
+        .inbox-thread__meta {
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+        }
+
+        .inbox-empty {
+            padding: var(--space-xl);
+            color: var(--color-text-muted);
+            text-align: center;
+        }
+
+        .inbox-detail__top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: var(--space-md);
+            margin-bottom: var(--space-md);
+        }
+
+        .inbox-detail__title {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--color-white);
+            margin-bottom: 0.15rem;
+        }
+
+        .inbox-detail__meta {
+            color: var(--color-text-secondary);
+            font-size: 0.88rem;
+        }
+
+        .inbox-status {
+            display: inline-flex;
+            align-items: center;
+            padding: 2px 10px;
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            font-weight: 700;
+        }
+
+        .inbox-status--open {
+            background: rgba(34, 197, 94, 0.15);
+            color: var(--color-success);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .inbox-status--closed {
+            background: rgba(113, 131, 154, 0.16);
+            color: var(--color-text-secondary);
+            border: 1px solid rgba(113, 131, 154, 0.3);
+        }
+
+        .inbox-status--archived {
+            background: rgba(148, 163, 184, 0.16);
+            color: var(--color-text-secondary);
+            border: 1px solid rgba(148, 163, 184, 0.3);
+        }
+
+        .inbox-messages {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+            margin: var(--space-lg) 0;
+            max-height: 46vh;
+            overflow-y: auto;
+            padding-right: var(--space-xs);
+        }
+
+        .inbox-message {
+            border-radius: var(--radius-md);
+            padding: 0.85rem 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .inbox-message--in {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .inbox-message--out {
+            background: rgba(0, 136, 204, 0.14);
+            border-color: rgba(0, 136, 204, 0.24);
+        }
+
+        .inbox-message__meta {
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+            margin-bottom: 0.35rem;
+        }
+
+        .inbox-message__text {
+            color: var(--color-text);
+            white-space: pre-wrap;
+        }
+
+        .inbox-actions {
+            display: flex;
+            gap: var(--space-sm);
+            flex-wrap: wrap;
+            margin-bottom: var(--space-md);
+        }
+
+        .inbox-reply textarea {
+            min-height: 110px;
+        }
+
+        html[data-theme="light"] .inbox-thread__subject,
+        html[data-theme="light"] .inbox-detail__title {
+            color: var(--color-text);
+        }
+
+        html[data-theme="light"] .inbox-thread.active {
+            background: rgba(0, 136, 204, 0.1);
+        }
+
+        html[data-theme="light"] .inbox-message--in {
+            background: rgba(0, 0, 0, 0.02);
+            border-color: rgba(26, 37, 51, 0.08);
+        }
+
         /* ---- BACK LINK ---- */
         .back-link {
             color: var(--color-text-secondary);
@@ -527,6 +737,15 @@
             .news-layout {
                 grid-template-columns: 1fr;
             }
+
+            .inbox-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .inbox-thread-list,
+            .inbox-messages {
+                max-height: none;
+            }
         }
     </style>
 </head>
@@ -575,12 +794,13 @@
 
         <!-- Tabs -->
         <div class="tabs">
-            <button class="tab-btn active" data-tab="news">📰 Nyheder</button>
+            <button class="tab-btn active" data-tab="inbox">📥 Indbakke</button>
+            <button class="tab-btn" data-tab="news">📰 Nyheder</button>
             <button class="tab-btn" data-tab="pdfs">📄 PDF-filer</button>
         </div>
 
         <!-- ======= TAB: NEWS ======= -->
-        <div class="tab-panel active" id="tab-news">
+        <div class="tab-panel" id="tab-news">
 
             <div class="news-layout">
 
@@ -664,6 +884,57 @@
             </div>
         </div>
 
+        <!-- ======= TAB: INBOX ======= -->
+        <div class="tab-panel active" id="tab-inbox">
+            <h2 class="section-title">Indbakke</h2>
+            <p style="color: var(--color-text-secondary); margin-bottom: var(--space-xl); font-size: 0.9rem;">Her kan
+                bestyrelsen se henvendelser fra kontaktformularen og svare internt fra samme visning.</p>
+
+            <div class="inbox-preview-warning">OBS: Mailfunktion virker ikke endnu. Indbakken kan lige nu kun ses
+                visuelt som test/preview.</div>
+
+            <div class="inbox-layout">
+                <div class="card inbox-list">
+                    <div class="inbox-list__header">Samtaler</div>
+                    <div class="inbox-list__controls">
+                        <button type="button" class="btn btn--outline btn--small inbox-filter-btn active"
+                            id="inboxFilterActiveBtn">Aktive</button>
+                        <button type="button" class="btn btn--outline btn--small inbox-filter-btn"
+                            id="inboxFilterArchivedBtn">Arkiverede</button>
+                    </div>
+                    <div id="inboxThreadList" class="inbox-thread-list"></div>
+                </div>
+
+                <div class="card" id="inboxDetailCard">
+                    <div class="inbox-detail__top">
+                        <div>
+                            <div class="inbox-detail__title" id="inboxDetailTitle">Vælg en samtale</div>
+                            <div class="inbox-detail__meta" id="inboxDetailMeta">Ingen samtale valgt endnu.</div>
+                        </div>
+                        <span class="inbox-status" id="inboxStatus" style="display:none;"></span>
+                    </div>
+
+                    <div class="inbox-actions">
+                        <button type="button" class="btn btn--outline btn--small" id="inboxToggleStatusBtn"
+                            style="display:none;">Markér som lukket</button>
+                        <button type="button" class="btn btn--outline btn--small" id="inboxArchiveBtn"
+                            style="display:none;">Arkivér</button>
+                    </div>
+
+                    <div id="inboxMessages" class="inbox-messages"></div>
+
+                    <form id="inboxReplyForm" class="inbox-reply" style="display:none;">
+                        <div class="form-group" style="margin-bottom: var(--space-sm);">
+                            <label class="form-label" for="inboxReplyText">Svar til henvendelse</label>
+                            <textarea class="form-textarea" id="inboxReplyText"
+                                placeholder="Skriv svar her..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn--primary">Send svar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <script>
@@ -689,6 +960,17 @@
             const newsCancelEdit = document.getElementById('newsCancelEdit');
             const newsFormTitle = document.getElementById('newsFormTitle');
             const adminNewsList = document.getElementById('adminNewsList');
+            const inboxThreadList = document.getElementById('inboxThreadList');
+            const inboxDetailTitle = document.getElementById('inboxDetailTitle');
+            const inboxDetailMeta = document.getElementById('inboxDetailMeta');
+            const inboxStatus = document.getElementById('inboxStatus');
+            const inboxMessages = document.getElementById('inboxMessages');
+            const inboxReplyForm = document.getElementById('inboxReplyForm');
+            const inboxReplyText = document.getElementById('inboxReplyText');
+            const inboxToggleStatusBtn = document.getElementById('inboxToggleStatusBtn');
+            const inboxArchiveBtn = document.getElementById('inboxArchiveBtn');
+            const inboxFilterActiveBtn = document.getElementById('inboxFilterActiveBtn');
+            const inboxFilterArchivedBtn = document.getElementById('inboxFilterArchivedBtn');
 
             // Keep PDF field config early so loadPdfValues() can safely run on init.
             const pdfFields = [
@@ -701,6 +983,8 @@
             ];
 
             let isLoggedIn = sessionStorage.getItem('fam_admin') === 'true';
+            let currentInboxThreadId = null;
+            let currentInboxView = 'active';
 
             // ---- INIT ----
             if (isLoggedIn) {
@@ -736,6 +1020,7 @@
                 dashboard.classList.add('active');
                 renderNewsList();
                 loadPdfValues();
+                renderInbox();
             }
 
             // ========== TABS ==========
@@ -865,6 +1150,209 @@
                 status.style.display = 'inline';
                 setTimeout(() => { status.style.display = 'none'; }, 3000);
             });
+
+            // ========== INBOX ==========
+            function getInboxThreads() {
+                return JSON.parse(localStorage.getItem('fam_inbox_threads') || '[]');
+            }
+
+            function saveInboxThreads(threads) {
+                localStorage.setItem('fam_inbox_threads', JSON.stringify(threads));
+            }
+
+            function ensureInboxSeedData() {
+                const threads = getInboxThreads();
+                if (threads.length > 0) return;
+
+                const now = new Date().toISOString();
+                const seed = [
+                    {
+                        id: 'thread-seed-1',
+                        ticketNo: 'KD-1001',
+                        name: 'Test Bruger',
+                        email: 'test@example.com',
+                        subject: 'Spørgsmål om prøvekørsel',
+                        status: 'open',
+                        createdAt: now,
+                        updatedAt: now,
+                        messages: [
+                            {
+                                id: 'msg-seed-1',
+                                direction: 'in',
+                                senderName: 'Test Bruger',
+                                senderEmail: 'test@example.com',
+                                text: 'Hej. Hvordan fungerer prøvekørsel for børn under 11 år?',
+                                createdAt: now
+                            }
+                        ]
+                    }
+                ];
+
+                saveInboxThreads(seed);
+            }
+
+            function renderInbox() {
+                ensureInboxSeedData();
+                const threads = getInboxThreads()
+                    .map(thread => ({ ...thread, archived: !!thread.archived }))
+                    .sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
+
+                const visibleThreads = threads.filter(thread => currentInboxView === 'archived' ? thread.archived : !thread.archived);
+
+                inboxFilterActiveBtn.classList.toggle('active', currentInboxView === 'active');
+                inboxFilterArchivedBtn.classList.toggle('active', currentInboxView === 'archived');
+
+                if (visibleThreads.length === 0) {
+                    inboxThreadList.innerHTML = `<div class="inbox-empty">${currentInboxView === 'archived' ? 'Ingen arkiverede henvendelser endnu.' : 'Ingen aktive henvendelser endnu.'}</div>`;
+                    currentInboxThreadId = null;
+                    renderInboxDetail(null);
+                    return;
+                }
+
+                if (!currentInboxThreadId || !visibleThreads.find(t => t.id === currentInboxThreadId)) {
+                    currentInboxThreadId = visibleThreads[0].id;
+                }
+
+                inboxThreadList.innerHTML = visibleThreads.map(thread => `
+                    <button type="button" class="inbox-thread ${thread.id === currentInboxThreadId ? 'active' : ''}" data-thread-id="${thread.id}">
+                        <div class="inbox-thread__subject">${escapeHtml(thread.subject)} <span style="color: var(--color-text-muted);">(${escapeHtml(thread.ticketNo || thread.id)})</span></div>
+                        <div class="inbox-thread__meta">${escapeHtml(thread.name)} · ${escapeHtml(formatDateTime(thread.updatedAt))}</div>
+                    </button>
+                `).join('');
+
+                renderInboxDetail(visibleThreads.find(t => t.id === currentInboxThreadId));
+            }
+
+            function renderInboxDetail(thread) {
+                if (!thread) {
+                    inboxDetailTitle.textContent = 'Vælg en samtale';
+                    inboxDetailMeta.textContent = 'Ingen samtale valgt endnu.';
+                    inboxStatus.style.display = 'none';
+                    inboxToggleStatusBtn.style.display = 'none';
+                    inboxArchiveBtn.style.display = 'none';
+                    inboxMessages.innerHTML = '';
+                    inboxReplyForm.style.display = 'none';
+                    return;
+                }
+
+                inboxDetailTitle.textContent = `${thread.subject} (${thread.ticketNo || thread.id})`;
+                inboxDetailMeta.textContent = `${thread.name} · ${thread.email}`;
+
+                inboxStatus.style.display = 'inline-flex';
+                if (thread.archived) {
+                    inboxStatus.className = 'inbox-status inbox-status--archived';
+                    inboxStatus.textContent = 'Arkiveret';
+                } else {
+                    inboxStatus.className = `inbox-status ${thread.status === 'closed' ? 'inbox-status--closed' : 'inbox-status--open'}`;
+                    inboxStatus.textContent = thread.status === 'closed' ? 'Lukket' : 'Åben';
+                }
+
+                inboxToggleStatusBtn.style.display = thread.archived ? 'none' : 'inline-flex';
+                inboxToggleStatusBtn.textContent = thread.status === 'closed' ? 'Genåbn' : 'Markér som lukket';
+
+                inboxArchiveBtn.style.display = 'inline-flex';
+                inboxArchiveBtn.textContent = thread.archived ? 'Flyt til aktive' : 'Arkivér';
+
+                inboxMessages.innerHTML = (thread.messages || []).map(msg => `
+                    <div class="inbox-message inbox-message--${msg.direction === 'out' ? 'out' : 'in'}">
+                        <div class="inbox-message__meta">${msg.direction === 'out' ? 'Bestyrelse' : escapeHtml(msg.senderName || thread.name)} · ${escapeHtml(formatDateTime(msg.createdAt))}</div>
+                        <div class="inbox-message__text">${escapeHtml(msg.text || '')}</div>
+                    </div>
+                `).join('');
+
+                inboxReplyForm.style.display = (thread.status === 'closed' || thread.archived) ? 'none' : 'block';
+            }
+
+            inboxFilterActiveBtn.addEventListener('click', () => {
+                currentInboxView = 'active';
+                renderInbox();
+            });
+
+            inboxFilterArchivedBtn.addEventListener('click', () => {
+                currentInboxView = 'archived';
+                renderInbox();
+            });
+
+            inboxThreadList.addEventListener('click', (e) => {
+                const btn = e.target.closest('.inbox-thread');
+                if (!btn) return;
+
+                currentInboxThreadId = btn.getAttribute('data-thread-id');
+                renderInbox();
+            });
+
+            inboxToggleStatusBtn.addEventListener('click', () => {
+                if (!currentInboxThreadId) return;
+                const threads = getInboxThreads();
+                const thread = threads.find(t => t.id === currentInboxThreadId);
+                if (!thread) return;
+
+                thread.status = thread.status === 'closed' ? 'open' : 'closed';
+                thread.updatedAt = new Date().toISOString();
+                saveInboxThreads(threads);
+                renderInbox();
+            });
+
+            inboxArchiveBtn.addEventListener('click', () => {
+                if (!currentInboxThreadId) return;
+                const threads = getInboxThreads();
+                const thread = threads.find(t => t.id === currentInboxThreadId);
+                if (!thread) return;
+
+                thread.archived = !thread.archived;
+                thread.updatedAt = new Date().toISOString();
+                saveInboxThreads(threads);
+
+                if (thread.archived && currentInboxView === 'active') {
+                    currentInboxThreadId = null;
+                }
+                if (!thread.archived && currentInboxView === 'archived') {
+                    currentInboxThreadId = null;
+                }
+
+                renderInbox();
+            });
+
+            inboxReplyForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                if (!currentInboxThreadId) return;
+
+                const text = inboxReplyText.value.trim();
+                if (!text) return;
+
+                const threads = getInboxThreads();
+                const thread = threads.find(t => t.id === currentInboxThreadId);
+                if (!thread) return;
+
+                thread.messages = thread.messages || [];
+                thread.messages.push({
+                    id: `msg-${Date.now()}`,
+                    direction: 'out',
+                    senderName: 'Bestyrelse',
+                    senderEmail: 'admin@kejserdalen.dk',
+                    text,
+                    createdAt: new Date().toISOString()
+                });
+
+                thread.status = 'open';
+                thread.updatedAt = new Date().toISOString();
+                saveInboxThreads(threads);
+
+                inboxReplyForm.reset();
+                renderInbox();
+            });
+
+            function formatDateTime(value) {
+                const date = new Date(value);
+                if (Number.isNaN(date.getTime())) return '-';
+                return date.toLocaleString('da-DK', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+            }
 
             // ---- HELPER ----
             function escapeHtml(text) {
