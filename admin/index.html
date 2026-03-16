@@ -196,6 +196,12 @@
             gap: var(--space-md);
         }
 
+        .topbar__right {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+
         .topbar__logo {
             height: 40px;
         }
@@ -463,6 +469,7 @@
             color: var(--color-text-secondary);
             text-decoration: none;
             font-size: 0.85rem;
+            white-space: nowrap;
             transition: color var(--transition-fast);
         }
 
@@ -472,6 +479,33 @@
 
         /* ---- RESPONSIVE ---- */
         @media (max-width: 768px) {
+            .topbar {
+                padding: var(--space-sm) var(--space-md);
+                gap: var(--space-sm);
+                align-items: flex-start;
+            }
+
+            .topbar__left {
+                gap: var(--space-sm);
+                flex-wrap: wrap;
+            }
+
+            .topbar__title {
+                font-size: 1.05rem;
+            }
+
+            .topbar__right {
+                width: 100%;
+                justify-content: space-between;
+                padding-top: var(--space-xs);
+                border-top: 1px solid rgba(0, 136, 204, 0.12);
+            }
+
+            #logoutBtn {
+                padding: 0.45rem 0.85rem;
+                font-size: 0.82rem;
+            }
+
             .tabs {
                 flex-wrap: wrap;
             }
@@ -532,7 +566,7 @@
                 <span class="topbar__title">Dashboard</span>
                 <span class="topbar__badge">Admin</span>
             </div>
-            <div style="display: flex; align-items: center; gap: var(--space-md);">
+            <div class="topbar__right">
                 <a href="../index.html" class="back-link">← Tilbage til forsiden</a>
                 <button class="btn btn--outline" id="logoutBtn"
                     onclick="sessionStorage.removeItem('fam_admin'); location.reload();">Log ud</button>
